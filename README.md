@@ -1,2 +1,2 @@
 # SnowTricks
-Symfony project from OpenClassrooms
+Symfony project
