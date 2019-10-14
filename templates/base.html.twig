@@ -46,8 +46,10 @@
 </head>
 
 <body>
-    {% block content %}{% endblock %}
-    {% block javascripts %}{% endblock %}
+    {% include 'header.html.twig' %}
+        {% block content %}{% endblock %}
+        {% block javascripts %}{% endblock %}
+    {% include 'footer.html.twig' %}
 </body>
 
 </html>
