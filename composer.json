@@ -1,5 +1,5 @@
 {
-    "name": "valentinantoin/SnowTricks",
+    "name": "valentinantoin/snowtricks",
     "type": "project",
     "description": "Snowtricks project",
     "version": "0.1.0",
@@ -34,6 +34,7 @@
         "symfony/twig-bundle": "4.3.*",
         "symfony/validator": "4.3.*",
         "symfony/web-link": "4.3.*",
+        "symfony/webpack-encore-bundle": "^1.6",
         "symfony/yaml": "4.3.*"
     },
     "require-dev": {
