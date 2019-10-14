@@ -1,6 +1,15 @@
 {
+    "name": "valentinantoin/SnowTricks",
     "type": "project",
-    "license": "proprietary",
+    "description": "Snowtricks project",
+    "version": "0.1.0",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Valentin Antoin",
+            "email": "valentin.antoin@gmail.com"
+        }
+    ],
     "require": {
         "php": "^7.1.3",
         "ext-ctype": "*",
