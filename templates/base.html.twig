@@ -1,12 +1,53 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        {% block stylesheets %}{% endblock %}
-    </head>
-    <body>
-        {% block body %}{% endblock %}
-        {% block javascripts %}{% endblock %}
-    </body>
+<html lang="fr">
+
+<!--   HEAD   -->
+<head>
+
+    <!--  MAIN META   -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <!--  TITLE   -->
+    <title>{% block title %}{% endblock %}</title>
+
+    <!--  SECONDARY META  -->
+    <meta name="description" content="Snow Tricks Website">
+    <meta name="author" content="Valentin ANTOIN">
+
+    <!--  OPENGRAPH  -->
+    <meta property="og:title" content="Snow Tricks Website">
+    <meta property="og:type" content="website">
+    <meta property="url" content="#">
+    <meta property="og:image" content="#">
+    <meta property="og:description" content="Snow Tricks Website">
+
+    <!--  TWITTER  -->
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:site" content="#">
+    <meta name="twitter:title" content="Snow Tricks Website">
+    <meta name="twitter:description" content="Snow Tricks Website">
+    <meta name="twitter:creator" content="@Valentin_Antoin">
+    <meta name="twitter:image" content="#">
+
+
+    <!--  ICONS   -->
+    <link rel="shortcut icon" type="image/x-icon" href="#">
+
+    <!--   NORMALIZE   -->
+    <link rel="stylesheet" href="https://necolas.github.io/normalize.css/8.0.1/normalize.css">
+
+    <!--   GOOGLE SEARCH CONSOLE   -->
+
+    <!--  CSS STYLESHEET   -->
+    <link rel="stylesheet" href="#">
+
+</head>
+
+<body>
+    {% block content %}{% endblock %}
+    {% block javascripts %}{% endblock %}
+</body>
+
 </html>
