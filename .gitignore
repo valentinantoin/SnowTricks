@@ -50,6 +50,7 @@
 .idea/
 config/
 /var/log/*
+img/
 ###> symfony/webpack-encore-bundle ###
 /node_modules/
 /public/build/
