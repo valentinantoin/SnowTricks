@@ -1,1 +1,8 @@
+html {
+    scroll-behavior: smooth;
+}
 
+footer a,
+header svg{
+    color: #3F4256;
+}
