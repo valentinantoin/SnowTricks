@@ -41,15 +41,15 @@
     <!--   GOOGLE SEARCH CONSOLE   -->
 
     <!--  CSS STYLESHEET   -->
-    <link rel="stylesheet" href="#">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    {% block stylesheet %} {{ encore_entry_link_tags('app') }}{% endblock %}
 
 </head>
 
 <body>
     {% include 'header.html.twig' %}
-        {% block content %}{% endblock %}
-        {% block javascripts %}{% endblock %}
+        {% block body %}{% endblock %}
+        {% block javascripts %}{{ encore_entry_script_tags('app') }}{% endblock %}
     {% include 'footer.html.twig' %}
 </body>
-
 </html>
