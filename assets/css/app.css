@@ -11,11 +11,13 @@ h1 {
 main {
     display: flex;
     justify-content: space-around;
+    flex-wrap: wrap;
 }
 .card {
     width: 20%;
     margin-top: 2rem;
     margin-bottom: 5rem;
+    margin-left: 1rem;
     box-shadow: 5px 5px 10px 2px #3F4256;
 }
 
