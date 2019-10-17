@@ -16,7 +16,7 @@
                 <h5 class="card-title">{{ trick.title }}</h5>
                 <h6>{{ trick.type }}</h6>
                 <p class="card-text">{{ trick.content | slice(0,100) }}</p>
-                <a href="#" class="btn btn-primary">Voir plus...</a>
+                <a href="{{ path('trick', {id: trick.id }) }}" class="btn btn-primary">Voir plus...</a>
             </div>
         </div>
 
