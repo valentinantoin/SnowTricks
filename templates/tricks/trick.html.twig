@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ trick.title }}{% endblock %}
+
+{% block body %}
+
+    <div class="card trick">
+        <div class="card-header">
+            {{ trick.title }}
+        </div>
+        <img src="../img/{{ trick.img }}" class="card-img-top" alt="{{ trick.title }}">
+        <div class="card-body">
+            <p class="text-right">{{ trick.createdAt | date("d/m/Y") }}</p>
+            <p class="text-left">Type de figure : {{ trick.type }}</p>
+            <p class="card-text">{{ trick.content }}</p>
+        </div>
+    </div>
+
+{% endblock %}
