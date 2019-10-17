@@ -3,6 +3,21 @@ html {
 }
 
 footer a,
-header svg{
+header svg,
+h1 {
     color: #3F4256;
+}
+
+main {
+    display: flex;
+    justify-content: space-around;
+}
+.card {
+    width: 20%;
+    margin-top: 2rem;
+}
+
+h1 {
+    margin-top: 2rem;
+    text-align: center;
 }

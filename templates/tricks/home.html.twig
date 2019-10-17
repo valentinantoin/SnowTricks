@@ -15,4 +15,24 @@
         </div>
     </div>
 
+    <h1>Dernières figures ajoutées :</h1>
+
+    <main>
+
+        {% for trick in tricks %}
+
+            <div class="card">
+                <img src="img/{{ trick.img }}" class="card-img-top" alt="Snowboard trick">
+                <div class="card-body">
+                    <h5 class="card-title">{{ trick.title }}</h5>
+                    <h6>{{ trick.type }}</h6>
+                    <p class="card-text">{{ trick.content | slice(0,100) }}</p>
+                    <a href="#" class="btn btn-primary">Voir plus...</a>
+                </div>
+            </div>
+
+        {% endfor %}
+
+    </main>
+
 {% endblock %}
