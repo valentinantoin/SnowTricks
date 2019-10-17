@@ -52,4 +52,23 @@ class TricksController extends AbstractController
             'trick' => $trick
         ]);
     }
+
+    /**
+     * @Route("/tricks/{type}", name="typeTricks")
+     * @param $type
+     * @return Response
+     */
+    public function typeTricks($type)
+    {
+        $repoTricks = $this->getDoctrine()->getRepository(Tricks::class);
+        $tricks = $repoTricks->findAll();
+
+        $typeTricks = $repoTricks->findBy(['type'=> $type]);
+
+        return $this->render('tricks/typeTricks.html.twig', [
+            'tricks' => $tricks,
+            'typeTricks' => $typeTricks,
+            'type' => $type
+        ]);
+    }
 }
