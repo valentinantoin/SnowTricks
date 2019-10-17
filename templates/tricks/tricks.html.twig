@@ -6,17 +6,6 @@
 
     <h1>Toutes les figures disponibles :</h1>
 
-    <div class="d-flex">
-        <form class="form-group">
-            <label for="type" class="text-center">Recherchez une figure par type</label>
-            <select class="custom-select" id="type">
-                <option selected disabled>Type</option>
-                <option value="Grabs">Grabs</option>
-                <option value="Stalls">Stalls</option>
-                <option value="Straight airs">Straight airs</option>
-            </select>
-        </form>
-
         <main>
 
     {% for trick in tricks %}
@@ -34,5 +23,4 @@
     {% endfor %}
 
         </main>
-    </div>
 {% endblock %}
