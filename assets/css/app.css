@@ -12,6 +12,7 @@ main {
     display: flex;
     justify-content: space-around;
     flex-wrap: wrap;
+    width: 80%;
 }
 .card {
     width: 20%;
@@ -47,4 +48,13 @@ h1 {
 
 iframe {
     height: 500px;
+}
+
+form {
+    width: 20%;
+    margin: 1rem;
+}
+
+label {
+    width: 100%;
 }
