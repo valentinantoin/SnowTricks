@@ -15,9 +15,7 @@ main {
 }
 .card {
     width: 20%;
-    margin-top: 2rem;
-    margin-bottom: 5rem;
-    margin-left: 1rem;
+    margin: 2rem 1rem 2rem 1rem;
     box-shadow: 5px 5px 10px 2px #3F4256;
 }
 
