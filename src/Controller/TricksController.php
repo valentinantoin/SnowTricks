@@ -17,11 +17,10 @@ class TricksController extends AbstractController
      */
     public function home()
     {
-        $repoTricks = $this->getDoctrine()->getRepository(Tricks::class);
-        $tricks = $repoTricks->findAll();
+        $lastTricks = $this->getDoctrine()->getRepository(Tricks::class)->lastTricks();
 
         return $this->render('tricks/home.html.twig', [
-            'tricks' => $tricks
+            'tricks' => $lastTricks
         ]);
     }
 
