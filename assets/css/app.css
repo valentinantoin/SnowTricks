@@ -48,3 +48,17 @@ h1 {
 iframe {
     height: 500px;
 }
+
+.accordion {
+    margin: 2rem 1rem;
+}
+.accordion .card {
+    width: 100%;
+    margin: 0;
+    box-shadow: none;
+}
+
+.accordion a,
+.accordion button {
+    color: #3F4256;
+}
