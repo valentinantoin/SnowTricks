@@ -62,3 +62,8 @@ iframe {
 .accordion button {
     color: #3F4256;
 }
+
+.form {
+    width: 50%;
+    margin-left: 25%;
+}
