@@ -6,6 +6,13 @@
 
     <h1>Inscrivez-vous !!</h1>
 
+    {% for message in app.flashes('register') %}
+        <div class="alert alert-success">
+            {{ message }}
+        </div>
+        <a href="{{ path('home') }}"><button class="btn btn-warning">Connectez-vous ici</button></a>
+    {% endfor %}
+
     <section class="form">
         {{ form(form) }}
     </section>
