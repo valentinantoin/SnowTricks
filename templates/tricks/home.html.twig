@@ -4,6 +4,12 @@
 
 {% block body %}
 
+    {% for message in app.flashes('connected') | slice(1) %}
+        <div class="alert alert-success">
+            {{ message }}
+        </div>
+    {% endfor %}
+
     <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
         <div class="carousel-inner">
             <div class="carousel-item active">
