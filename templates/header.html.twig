@@ -26,6 +26,9 @@
                     </li>
                 {% else %}
                     <li class="nav-item">
+                        <a class="nav-link" href="{{ path('account') }}">Mon compte</a>
+                    </li>
+                    <li class="nav-item">
                         <a class="nav-link" href="{{ path('deconnection') }}">Se déconnecter</a>
                     </li>
                 {% endif %}

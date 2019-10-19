@@ -58,4 +58,12 @@ class UserController extends AbstractController
      * @Route("/deconnexion", name="deconnection")
      */
     public function deconnection() {}
+
+    /**
+     * @Route("/compte", name="account")
+     */
+    public function accountLoad()
+    {
+        return $this->render('user/account.html.twig');
+    }
 }
