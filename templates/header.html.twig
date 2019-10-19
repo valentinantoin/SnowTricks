@@ -17,12 +17,18 @@
                 <li class="nav-item">
                     <a class="nav-link" href="{{ path('tricks') }}">Tricks</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ path('connection') }}">Connexion</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link mr-5" href="{{ path('registration') }}">Inscription</a>
-                </li>
+                {% if not app.user %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ path('connection') }}">Connexion</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link mr-5" href="{{ path('registration') }}">Inscription</a>
+                    </li>
+                {% else %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ path('deconnection') }}">Se déconnecter</a>
+                    </li>
+                {% endif %}
             </ul>
         </div>
     </nav>
