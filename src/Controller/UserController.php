@@ -29,11 +29,19 @@ class UserController extends AbstractController
             $objectManager->persist($user);
             $objectManager->flush();
             $this->addFlash('register', 'Votre compte est bien créé !');
-            $this->redirectToRoute('home');
+            $this->redirectToRoute('connection');
         }
 
         return $this->render('user/registration.html.twig', [
             'form' => $form->createView()
         ]);
+    }
+
+    /**
+     * @Route("/connexion", name="connection")
+     */
+    public function connection()
+    {
+        return $this->render('user/connection.html.twig');
     }
 }
