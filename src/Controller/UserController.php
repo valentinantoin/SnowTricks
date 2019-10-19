@@ -9,8 +9,13 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
+use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
+/**
+ * Class UserController
+ * @package App\Controller
+ */
 class UserController extends AbstractController
 {
     /**
@@ -62,8 +67,13 @@ class UserController extends AbstractController
     /**
      * @Route("/compte", name="account")
      */
-    public function accountLoad()
+    public function accountLoad(UserInterface $userInterface)
     {
-        return $this->render('user/account.html.twig');
+        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
+        $user = $this->getUser();
+
+        return $this->render('user/account.html.twig', [
+            'user' => $user
+        ]);
     }
 }
