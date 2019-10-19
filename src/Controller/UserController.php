@@ -44,4 +44,9 @@ class UserController extends AbstractController
     {
         return $this->render('user/connection.html.twig');
     }
+
+    /**
+     * @Route("/deconnexion", name="deconnection")
+     */
+    public function deconnection() {}
 }
