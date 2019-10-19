@@ -70,8 +70,12 @@ class UserController extends AbstractController
 
     /**
      * @Route("/deconnexion", name="deconnection")
+     * @param Session $session
      */
-    public function deconnection() {}
+    public function deconnection(Session $session)
+    {
+        $session->getFlashBag()->clear();
+    }
 
     /**
      * @Route("/compte", name="account")
