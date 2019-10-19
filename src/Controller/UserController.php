@@ -7,6 +7,7 @@ use App\Form\RegistrationType;
 use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
@@ -21,6 +22,11 @@ class UserController extends AbstractController
 {
     /**
      * @Route("/inscription", name="registration")
+     * @param Request $request
+     * @param ObjectManager $objectManager
+     * @param UserPasswordEncoderInterface $userPasswordEncoder
+     * @return Response
+     * @throws \Exception
      */
     public function registration( Request $request, ObjectManager $objectManager, UserPasswordEncoderInterface $userPasswordEncoder)
     {
@@ -46,6 +52,8 @@ class UserController extends AbstractController
 
     /**
      * @Route("/connexion", name="connection")
+     * @param AuthenticationUtils $authenticationUtils
+     * @return Response
      */
     public function connection(AuthenticationUtils $authenticationUtils)
     {
@@ -67,6 +75,7 @@ class UserController extends AbstractController
 
     /**
      * @Route("/compte", name="account")
+     * @return Response
      */
     public function accountLoad()
     {
@@ -80,6 +89,8 @@ class UserController extends AbstractController
 
     /**
      * @Route("/deinscription", name="deleteAccount")
+     * @param Session $session
+     * @return Response
      */
     public function deleteAccount( Session $session)
     {

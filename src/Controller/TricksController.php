@@ -15,6 +15,7 @@ class TricksController extends AbstractController
 {
     /**
      * @Route("/", name="home")
+     * @return Response
      */
     public function home()
     {
@@ -27,6 +28,7 @@ class TricksController extends AbstractController
 
     /**
      * @Route("/tricks", name="tricks")
+     * @return Response
      */
     public function tricks()
     {
