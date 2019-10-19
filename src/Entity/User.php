@@ -31,6 +31,8 @@ class User
      */
     private $password;
 
+    private $passwordChecked;
+
     /**
      * @ORM\Column(type="date")
      */
@@ -77,14 +79,30 @@ class User
         return $this;
     }
 
+    /**
+     * @return mixed
+     */
+    public function getPasswordChecked()
+    {
+        return $this->passwordChecked;
+    }
+
+    /**
+     * @param mixed $passwordChecked
+     */
+    public function setPasswordChecked($passwordChecked): void
+    {
+        $this->passwordChecked = $passwordChecked;
+    }
+
     public function getCreatedAt(): ?\DateTimeInterface
     {
         return $this->createdAt;
     }
 
-    public function setCreatedAt(\DateTimeInterface $ctreatedAt): self
+    public function setCreatedAt(\DateTimeInterface $createdAt): self
     {
-        $this->createdAt = $ctreatedAt;
+        $this->createdAt = $createdAt;
 
         return $this;
     }
