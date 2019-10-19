@@ -11,6 +11,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
+use Symfony\Component\HttpFoundation\Session\Session;
 
 /**
  * Class UserController
@@ -67,7 +68,7 @@ class UserController extends AbstractController
     /**
      * @Route("/compte", name="account")
      */
-    public function accountLoad(UserInterface $userInterface)
+    public function accountLoad()
     {
         $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
         $user = $this->getUser();
@@ -75,5 +76,26 @@ class UserController extends AbstractController
         return $this->render('user/account.html.twig', [
             'user' => $user
         ]);
+    }
+
+    /**
+     * @Route("/deinscription", name="deleteAccount")
+     */
+    public function deleteAccount( Session $session)
+    {
+        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
+
+        $session = new Session();
+        $session->invalidate();
+
+        $user = $this->getUser();
+
+        $manager = $this->getDoctrine()->getManager();
+        $manager->remove($user);
+        $manager->flush();
+
+        $this->addFlash('delete', 'Votre compte est supprimé !');
+
+        return $this->redirectToRoute('home');
     }
 }

@@ -9,6 +9,11 @@
             {{ message }}
         </div>
     {% endfor %}
+    {% for message in app.flashes('delete') %}
+        <div class="alert alert-secondary">
+            {{ message }}
+        </div>
+    {% endfor %}
 
     <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
         <div class="carousel-inner">
