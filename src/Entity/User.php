@@ -13,6 +13,10 @@ use Symfony\Component\Validator\Constraints as Assert;
  *     fields = {"username"},
  *     message = "Ce pseudo est déjà pris..."
  * )
+ * @UniqueEntity(
+ *     fields = {"mail"},
+ *     message = "Cette adresse mail est déjà existante..."
+ * )
  */
 class User implements UserInterface
 {
