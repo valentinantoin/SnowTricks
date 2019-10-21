@@ -38,6 +38,11 @@ class Comment
      */
     private $createdAt;
 
+    /**
+     * @ORM\Column(type="string", length=70)
+     */
+    private $status;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -87,6 +92,18 @@ class Comment
     public function setCreatedAt(\DateTimeInterface $createdAt): self
     {
         $this->createdAt = $createdAt;
+
+        return $this;
+    }
+
+    public function getStatus(): ?string
+    {
+        return $this->status;
+    }
+
+    public function setStatus(string $status): self
+    {
+        $this->status = $status;
 
         return $this;
     }

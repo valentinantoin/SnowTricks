@@ -10,7 +10,6 @@ use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\Security\Core\Security;
 
 class CommentController extends AbstractController
 {
@@ -36,7 +35,8 @@ class CommentController extends AbstractController
             $comment->setContent($content)
                 ->setTrickId($trick)
                 ->setUser($user)
-                ->setCreatedAt(new \Datetime());
+                ->setCreatedAt(new \Datetime())
+                ->setStatus('published');
             $manager->persist($comment);
             $manager->flush();
 
