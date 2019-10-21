@@ -20,7 +20,8 @@ footer {
 footer a,
 h5 a,
 header svg,
-h1 {
+h1,
+.account h2 {
     color: #3F4256;
 }
 
@@ -105,4 +106,10 @@ h4 {
 
 .comment h4 {
     font-size: 1rem;
+}
+
+form .btn {
+    width: 20%;
+    margin-left: 40%;
+    margin-top: 1rem;
 }
