@@ -163,7 +163,7 @@ class User implements UserInterface
     {
         if (!$this->comments->contains($comment)) {
             $this->comments[] = $comment;
-            $comment->setUsername($this);
+            $comment->setUser($this);
         }
 
         return $this;
@@ -174,8 +174,8 @@ class User implements UserInterface
         if ($this->comments->contains($comment)) {
             $this->comments->removeElement($comment);
             // set the owning side to null (unless already changed)
-            if ($comment->getUsername() === $this) {
-                $comment->setUsername(null);
+            if ($comment->getUser() === $this) {
+                $comment->setUser(null);
             }
         }
 

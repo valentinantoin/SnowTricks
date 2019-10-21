@@ -26,7 +26,7 @@ class Comment
      * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="comments")
      * @ORM\JoinColumn(nullable=false)
      */
-    private $username;
+    private $user;
 
     /**
      * @ORM\Column(type="text")
@@ -55,14 +55,14 @@ class Comment
         return $this;
     }
 
-    public function getUsername(): ?User
+    public function getUser(): ?User
     {
-        return $this->username;
+        return $this->user;
     }
 
-    public function setUsername(?User $username): self
+    public function setUser(?User $user): self
     {
-        $this->username = $username;
+        $this->user = $user;
 
         return $this;
     }
