@@ -17,7 +17,9 @@
         <div class="card">
             <img src="img/{{ trick.img }}" class="card-img-top" alt="Snowboard trick">
             <div class="card-body d-flex justify-content-between flex-column">
-                <h5 class="card-title text-center">{{ trick.title }}</h5>
+                <h5 class="card-title text-center">
+                    <a href="{{ path('trick', {id: trick.id }) }}">{{ trick.title }}</a>
+                </h5>
                 <h6>{{ trick.type }}</h6>
                 <p class="card-text"><i class="far fa-clock"></i> Publié le: {{ trick.createdAt | date("d/m/Y") }}</p>
                 <a href="{{ path('trick', {id: trick.id }) }}" class="btn btn-primary">Voir plus...</a>
