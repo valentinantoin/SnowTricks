@@ -37,7 +37,7 @@
         <a href="{{ path('connection') }}" class="ml btn btn-dark">Connectez-vous</a>
     </h4>
     {% else %}
-    <form class="form" method="post" action="{{ path('createComment',{'id' : project.id}) }}">
+    <form class="form" method="post" action="{{ path('createComment',{'id' : trick.id}) }}">
 
         <div class="input-group flex-nowrap">
             <div class="input-group-prepend">
@@ -53,7 +53,7 @@
 
     {% endif %}
 
-    {% for comment in trick.comments %}
+    {% for comment in trick.comments | sort((a, b) => b.createdAt <=> a.createdAt) %}
 
     <section class="card comment">
         <div class="flex-sb">
