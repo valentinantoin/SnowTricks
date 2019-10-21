@@ -54,6 +54,7 @@
     {% endif %}
 
     {% for comment in trick.comments | sort((a, b) => b.createdAt <=> a.createdAt) %}
+        {% if comment.status == 'published' %}
 
     <section class="card comment">
         <div class="flex-sb">
@@ -69,6 +70,7 @@
         </div>
     </section>
 
+        {% endif %}
     {% endfor %}
 
 {% endblock %}
