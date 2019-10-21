@@ -44,12 +44,14 @@
         <div class="card-header">
             <h2 class="text-center">Mes commentaires</h2>
         </div>
-        <ul class="list-group list-group-flush">
             {% for comment in user.comments | sort((a, b) => b.createdAt <=> a.createdAt) %}
-            <li class="list-group-item">le : {{ comment.createdAt | date("d/m/Y à g:i") }} sur
-                <a href="{{ path('trick', {id: comment.trickId.id}) }}">{{ comment.trickId.title }}</a>
-                <br>
-                -> {{ comment.content }}
+        <ul class="list-group list-group-flush">
+        <li class="list-group-item"><em>le : {{ comment.createdAt | date("d/m/Y à g:i") }} sur
+                <a href="{{ path('trick', {id: comment.trickId.id}) }}">{{ comment.trickId.title }}</a></em>
+            <div class="d-flex justify-content-between">
+                <p>-> {{ comment.content }}</p>
+                <a href="#" class="btn btn-danger">Supprimer commentaire</a>
+            </div>
             </li>
             {% endfor %}
         </ul>
