@@ -28,4 +28,44 @@
         </div>
     </div>
 
+    <h3>Commentaires :</h3>
+
+    {% if not app.user %}
+    <h4 class="text-center">Pour laisser un commentaire,
+        <a href="{{ path('registration') }}" class="ml btn btn-dark">Inscrivez-vous</a>
+        ou
+        <a href="{{ path('connection') }}" class="ml btn btn-dark">Connectez-vous</a>
+    </h4>
+    {% else %}
+    <form class="form" method="post" action="{{ path('createComment',{'id' : project.id}) }}">
+
+        <div class="input-group flex-nowrap">
+            <div class="input-group-prepend">
+                <label for="comment" class="input-group-text" id="addon-wrapping">Ecrire un commentaire</label>
+            </div>
+            <textarea id="content" class="form-control" aria-label="content" name="content"
+                      aria-describedby="addon-wrapping" rows="4" cols="20" required></textarea>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Envoyer</button>
+
+    </form>
+
+    {% endif %}
+
+    {% for comment in trick.comments %}
+
+    <section class="card comment">
+        <div class="flex-sb">
+            <h4 class="card-header">Posté par : <strong>{{ comment.user.username }}</strong>,
+                le {{ comment.createdAt | date("d/m/Y à g:i") }}
+            </h4>
+        </div>
+        <div class="card-body">
+            <p class="card-text">{{ comment.content }}</p>
+        </div>
+    </section>
+
+    {% endfor %}
+
 {% endblock %}
