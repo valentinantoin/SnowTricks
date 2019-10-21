@@ -56,7 +56,7 @@ class User implements UserInterface
     private $createdAt;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Comment", mappedBy="username", orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity="App\Entity\Comment", mappedBy="user", orphanRemoval=true)
      */
     private $comments;
 
