@@ -44,12 +44,16 @@
         <div class="card-header">
             <h2 class="text-center">Mes commentaires</h2>
         </div>
-            {% for comment in user.comments | sort((a, b) => b.createdAt <=> a.createdAt) %}
         <ul class="list-group list-group-flush">
-        <li class="list-group-item"><em>le : {{ comment.createdAt | date("d/m/Y à g:i") }} sur
+            {% for comment in user.comments | sort((a, b) => b.createdAt <=> a.createdAt) %}
+
+                <li class="list-group-item"><em>le : {{ comment.createdAt | date("d/m/Y à g:i") }} sur
                 <a href="{{ path('trick', {id: comment.trickId.id}) }}">{{ comment.trickId.title }}</a></em>
             <div class="d-flex justify-content-between">
                 <p>-> {{ comment.content }}</p>
+                {% if comment.status == 'validation' %}
+                    <p class="text-danger">commentaire en modération !</p>
+                {% endif %}
                 <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteComment">
                     Supprimer commentaire
                 </button>
