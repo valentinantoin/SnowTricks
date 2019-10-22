@@ -92,6 +92,27 @@ class UserController extends AbstractController
     }
 
     /**
+     * @Route("/userAccount/{id}", name="userAccount")
+     * @param $id
+     * @return Response
+     */
+    public function userAccount($id)
+    {
+        if($this->isGranted('ROLE_ADMIN')) {
+
+            $repoUser = $this->getDoctrine()->getRepository(User::class);
+            $user = $repoUser->find($id);
+
+            return $this->render('user/account.html.twig', [
+                'user' => $user
+            ]);
+        }
+        $this->addFlash('admin', 'vous n\'avez pas dit le mot magique');
+
+        return $this->redirectToRoute('home');
+    }
+
+    /**
      * @Route("/deinscription", name="deleteAccount")
      * @param Session $session
      * @return Response

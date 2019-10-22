@@ -63,7 +63,9 @@
         <tbody>
         {% for user in users %}
             <tr>
-                <td>{{ user.username }}</td>
+                <td>
+                    <a href="{{ path('userAccount', {'id': user.id}) }}">{{ user.username }}</a>
+                </td>
                 <td><a href="mailto:{{ user.mail }}">{{ user.mail }}</a></td>
                 <td>{{ user.createdAt | date("d/m/Y") }}</td>
                 <td>{{ user.comments | length }}</td>
@@ -94,7 +96,9 @@
                     <a href="{{ path('trick', {id: comment.trickId.id}) }}">{{ comment.trickId.title }}</a>
                 </td>
                 <td>{{ comment.createdAt | date("d/m/Y") }}</td>
-                <td>{{ comment.user.username }}</td>
+                <td>
+                    <a href="{{ path('userAccount', {'id': comment.user.id}) }}">{{ comment.user.username }}</a>
+                </td>
                 <td>
                     <a class="controls" href="{{ path('validateComment', { id: comment.id}) }}">
                         <button type="button" class="btn btnChap btn-success">Valider</button>

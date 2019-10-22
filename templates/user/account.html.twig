@@ -1,21 +1,31 @@
 {% extends 'base.html.twig' %}
 
-{% block title 'Mon Compte' %}
+{% block title %}{{ user.username }}{% endblock %}
 
 {% block body %}
 
     <div class="card account">
         <div class="card-header">
-            <h1>Mon compte SnowTricks</h1>
+            {% if is_granted('ROLE_ADMIN') %}
+                <h1>Compte de {{ user.username }}</h1>
+            {% else %}
+                <h1>Mon compte SnowTricks</h1>
+            {% endif %}
         </div>
         <ul class="list-group list-group-flush">
             <li class="list-group-item">Nom d'utilisateur : {{ user.username }}</li>
             <li class="list-group-item">E-mail : {{ user.mail }}</li>
             <li class="list-group-item">Date d'inscription : {{ user.createdAt | date("d/m/Y") }}</li>
             <li class="list-group-item d-flex justify-content-around">
-                <a href="#" class="btn btn-primary">Modifier le mot de passe</a>
+                {% if not is_granted('ROLE_ADMIN') %}
+                    <a href="#" class="btn btn-primary">Modifier le mot de passe</a>
+                {% endif %}
                 <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteModal">
+                    {% if is_granted('ROLE_ADMIN') %}
+                    Supprimer le compte
+                    {% else %}
                     Supprimer mon compte
+                    {% endif %}
                 </button>
                 <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog" role="document">
@@ -27,7 +37,11 @@
                                 </button>
                             </div>
                             <div class="modal-body">
-                                <p>Etes-vous sûr de vouloir supprimer votre compte ?</p>
+                                {% if is_granted('ROLE_ADMIN') %}
+                                    <p>Etes-vous sûr de vouloir supprimer ce compte ?</p>
+                                {% else %}
+                                    <p>Etes-vous sûr de vouloir supprimer votre compte ?</p>
+                                {% endif %}
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Non</button>
