@@ -34,12 +34,16 @@
                 <td><a href="{{ path('trick', {'id' : trick.id}) }}">{{ trick.title }}</a></td>
                 <td>{{ trick.createdAt | date("d/m/Y") }}</td>
                 <td>{{ trick.comments | length }}</td>
-                <td><a class="controls" href="#">
+                <td>
+                    <a class="controls" href="#">
                         <button type="button" class="btn btnChap btn-warning">Modifier</button>
-                    </a></td>
-                <td><a class="controls" href="#">
+                    </a>
+                </td>
+                <td>
+                    <a class="controls" href="#">
                         <button type="button" class="btn btnChap btn-danger">Supprimer</button>
-                    </a></td>
+                    </a>
+                </td>
             </tr>
         {% endfor %}
         </tbody>
@@ -74,6 +78,7 @@
         <thead>
         <tr>
             <th>Commentaires</th>
+            <th>Trick</th>
             <th>Publié le</th>
             <th>auteur</th>
         </tr>
@@ -81,11 +86,14 @@
         <tbody>
         {% for comment in comments %}
             <tr>
-                <td><p>{{ comment.content }}</p></td>
+                <td>{{ comment.content }}</td>
+                <td>
+                    <a href="{{ path('trick', {id: comment.trickId.id}) }}">{{ comment.trickId.title }}</a>
+                </td>
                 <td>{{ comment.createdAt | date("d/m/Y") }}</td>
                 <td>{{ comment.user.username }}</td>
                 <td>
-                    <a class="controls" href="#">
+                    <a class="controls" href="{{ path('validateComment', { id: comment.id}) }}">
                         <button type="button" class="btn btnChap btn-success">Valider</button>
                     </a>
                 </td>
