@@ -65,7 +65,7 @@
         <div class="card-body d-flex justify-content-between">
             <p class="card-text">{{ comment.content }}</p>
             {% if app.user %}
-                <a href="#" class="btn btn-secondary">Signaler commentaire</a>
+                <a href="{{ path('reportComment',{'id': comment.id, 'trickId': trick.id}) }}" class="btn btn-secondary">Signaler commentaire</a>
             {% endif %}
         </div>
     </section>

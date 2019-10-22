@@ -59,4 +59,20 @@ class CommentController extends AbstractController
 
             return $this->redirectToRoute('account');
         }
+
+    /**
+     * @Route("/reportComment/{trickId}/{id}", name="reportComment")
+     * @param ObjectManager $manager
+     * @param $id
+     * @param $trickId
+     * @return RedirectResponse
+     */
+        public function reportComment(ObjectManager $manager,$trickId, $id )
+        {
+            $comment = $manager->getRepository(Comment::class)->find($id);
+            $comment->setStatus('validation');
+            $manager->flush();
+
+            return $this->redirectToRoute('trick',['id' => $trickId]);
+        }
 }
