@@ -84,6 +84,9 @@
         </tr>
         </thead>
         <tbody>
+        {% if comments is empty %}
+            <td>Pas de commentaires signalés</td>
+        {% endif %}
         {% for comment in comments %}
             <tr>
                 <td>{{ comment.content }}</td>
