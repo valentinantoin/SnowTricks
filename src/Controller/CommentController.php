@@ -57,6 +57,11 @@ class CommentController extends AbstractController
             $manager->remove($comment);
             $manager->flush();
 
+            if($this->isGranted('ROLE_ADMIN')) {
+
+                return $this->redirectToRoute('admin', ['_fragment' => 'comments']);
+            }
+
             return $this->redirectToRoute('account');
         }
 
