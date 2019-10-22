@@ -1,0 +1,102 @@
+{% extends 'base.html.twig' %}
+
+{% block title 'Admin' %}
+
+{% block body %}
+
+    <h1>Administration</h1>
+
+    <ul class="nav justify-content-center">
+        <li class="nav-item">
+            <a class="nav-link active" href="#tricks">Tricks</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#users">Utilisateurs</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#comments">Commentaires</a>
+        </li>
+    </ul>
+
+    <h2 class="text-center" id="tricks">Tricks</h2>
+
+    <table>
+        <thead>
+        <tr>
+            <th>Tricks en ligne</th>
+            <th>Publié le</th>
+            <th>commentaires</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for trick in tricks %}
+            <tr>
+                <td><a href="{{ path('trick', {'id' : trick.id}) }}">{{ trick.title }}</a></td>
+                <td>{{ trick.createdAt | date("d/m/Y") }}</td>
+                <td>{{ trick.comments | length }}</td>
+                <td><a class="controls" href="#">
+                        <button type="button" class="btn btnChap btn-warning">Modifier</button>
+                    </a></td>
+                <td><a class="controls" href="#">
+                        <button type="button" class="btn btnChap btn-danger">Supprimer</button>
+                    </a></td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <h2 class="text-center" id="users">Utilisateurs inscrits</h2>
+
+    <table>
+        <thead>
+        <tr>
+            <th>Utilisateurs</th>
+            <th>Mail</th>
+            <th>Depuis le :</th>
+            <th>Commentaires</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for user in users %}
+            <tr>
+                <td>{{ user.username }}</td>
+                <td><a href="mailto:{{ user.mail }}">{{ user.mail }}</a></td>
+                <td>{{ user.createdAt | date("d/m/Y") }}</td>
+                <td>{{ user.comments | length }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <h2 class="text-center" id="comments">Commentaires en attente de validations</h2>
+
+    <table>
+        <thead>
+        <tr>
+            <th>Commentaires</th>
+            <th>Publié le</th>
+            <th>auteur</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for comment in comments %}
+            <tr>
+                <td><p>{{ comment.content }}</p></td>
+                <td>{{ comment.createdAt | date("d/m/Y") }}</td>
+                <td>{{ comment.user.username }}</td>
+                <td>
+                    <a class="controls" href="#">
+                        <button type="button" class="btn btnChap btn-success">Valider</button>
+                    </a>
+                </td>
+                <td>
+                    <a class="controls" href="#">
+                        <button type="button" class="btn btnChap btn-danger">Supprimer</button>
+                    </a>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock %}

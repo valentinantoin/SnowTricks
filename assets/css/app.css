@@ -21,7 +21,8 @@ footer a,
 h5 a,
 header svg,
 h1,
-.account h2 {
+.account h2,
+h2 {
     color: #3F4256;
 }
 
@@ -116,4 +117,26 @@ form .btn {
 
 ul {
     padding: 1rem;
+}
+
+/*---ADMIN---*/
+table {
+    box-shadow: 5px 5px 10px 2px #3F4256;
+    width: 80%;
+    margin: 4rem 10%;
+}
+
+td {
+    border-bottom: 1px solid #3F4256 ;
+    padding: 1rem 2rem;
+    text-align: center;
+}
+
+th {
+    font-size: 1.3rem;
+    text-align: center;
+}
+
+thead {
+    border-bottom: 1px solid #3F4256 ;
 }

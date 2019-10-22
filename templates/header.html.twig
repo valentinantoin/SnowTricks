@@ -25,6 +25,11 @@
                         <a class="nav-link mr-5" href="{{ path('registration') }}">Inscription</a>
                     </li>
                 {% else %}
+                    {% if is_granted('ROLE_ADMIN') %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ path('admin') }}">Admin</a>
+                        </li>
+                    {% endif %}
                     <li class="nav-item">
                         <a class="nav-link" href="{{ path('account') }}">Mon compte</a>
                     </li>
