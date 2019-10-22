@@ -80,4 +80,25 @@ class CommentController extends AbstractController
 
             return $this->redirectToRoute('trick',['id' => $trickId]);
         }
+
+    /**
+     * @Route("/validateComment/{id}", name="validateComment")
+     * @param ObjectManager $manager
+     * @param $id
+     * @return RedirectResponse
+     */
+    public function validateComment(ObjectManager $manager, $id)
+        {
+            if($this->isGranted('ROLE_ADMIN')) {
+
+                $comment = $manager->getRepository(Comment::class)->find($id);
+                $comment->setStatus('published');
+                $manager->flush();
+
+                return $this->redirectToRoute('admin', ['_fragment' => 'comments']);
+            }
+            $this->addFlash('admin', 'vous n\'avez pas dit le mot magique');
+
+            return $this->redirectToRoute('home');
+        }
 }
