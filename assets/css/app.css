@@ -1,3 +1,4 @@
+/*===   GLOBAL   ===*/
 html {
     scroll-behavior: smooth;
     height: 100%;
@@ -10,11 +11,9 @@ body {
     padding-bottom: 5rem;
 }
 
-footer {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
+h1 {
+    margin-top: 2rem;
+    text-align: center;
 }
 
 footer a,
@@ -26,47 +25,12 @@ h2 {
     color: #3F4256;
 }
 
-main {
-    display: flex;
-    justify-content: space-around;
-    flex-wrap: wrap;
-}
-.card {
-    width: 20%;
-    margin: 2rem 1rem 2rem 1rem;
-    box-shadow: 5px 5px 10px 2px #3F4256;
+.form {
+    width: 50%;
+    margin-left: 25%;
 }
 
-.trick {
-    width: 90%;
-    margin-left: 5%;
-}
-
-.trick h1 {
-    font-size: 2rem;
-    margin: 1rem;
-}
-
-h1 {
-    margin-top: 2rem;
-    text-align: center;
-}
-
-.carousel-item img {
-    width: 100%;
-    height: 700px;
-}
-
-.video {
-    width: 70%;
-    margin-left: 15%;
-    height: 500px;
-}
-
-iframe {
-    height: 500px;
-}
-
+/*- trickSelector -*/
 .accordion {
     margin: 2rem 1rem;
 }
@@ -81,16 +45,54 @@ iframe {
     color: #3F4256;
 }
 
-.form {
-    width: 50%;
-    margin-left: 25%;
+/*- footer -*/
+footer {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
 }
 
-.account {
-    width: 80%;
-    margin-left: 10%;
+/*===   HOME   ===*/
+.carousel-item img {
+    width: 100%;
+    height: 700px;
 }
 
+/*===   TRICKS   ===*/
+main {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+.card {
+    width: 20%;
+    margin: 2rem 1rem 2rem 1rem;
+    box-shadow: 5px 5px 10px 2px #3F4256;
+}
+
+/*===   TRICK   ===*/
+.trick {
+    width: 90%;
+    margin-left: 5%;
+}
+
+.trick h1 {
+    font-size: 2rem;
+    margin: 1rem;
+}
+
+.video {
+    width: 70%;
+    margin-left: 15%;
+    height: 500px;
+}
+
+iframe {
+    height: 500px;
+}
+/*-comment-*/
 .comment {
     width: 70%;
     margin-left: 15%;
@@ -115,11 +117,17 @@ form .btn {
     margin-top: 1rem;
 }
 
+/*===   ACCOUNT   ===*/
+.account {
+    width: 80%;
+    margin-left: 10%;
+}
+
 ul {
     padding: 1rem;
 }
 
-/*---ADMIN---*/
+/*===   ADMIN   ===*/
 table {
     box-shadow: 5px 5px 10px 2px #3F4256;
     width: 80%;
