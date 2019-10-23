@@ -34,9 +34,7 @@
     <h1>Dernières figures ajoutées :</h1>
 
     <main>
-
         {% for trick in tricks %}
-
             <div class="card">
                 <img src="img/{{ trick.img }}" class="card-img-top" alt="Snowboard trick">
                 <div class="card-body d-flex justify-content-between flex-column">
@@ -46,9 +44,7 @@
                     <a href="{{ path('trick', {id: trick.id }) }}" class="btn btn-primary">Voir plus...</a>
                 </div>
             </div>
-
         {% endfor %}
-
     </main>
 
 {% endblock %}
