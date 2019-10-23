@@ -60,11 +60,6 @@ footer {
 }
 
 /*===   TRICKS   ===*/
-main {
-    display: flex;
-    justify-content: space-around;
-    flex-wrap: wrap;
-}
 
 .card {
     width: 20%;
