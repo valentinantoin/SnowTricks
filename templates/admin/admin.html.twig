@@ -6,131 +6,134 @@
 
     <h1>Administration</h1>
 
-    <ul class="nav justify-content-center">
-        <li class="nav-item">
-            <a class="nav-link active" href="#tricks">Tricks</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="#users">Utilisateurs</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="#comments">Commentaires</a>
-        </li>
-    </ul>
+   <nav>
+        <ul class="nav justify-content-center">
+            <li class="nav-item">
+                <a class="nav-link active" href="#tricks">Tricks</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#users">Utilisateurs</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#comments">Commentaires</a>
+            </li>
+        </ul>
+   </nav>
 
-    <h2 class="text-center" id="tricks">Tricks</h2>
+    <main>
+        <h2 class="text-center" id="tricks">Tricks</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Tricks en ligne</th>
+                    <th>Publié le</th>
+                    <th>commentaires</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for trick in tricks %}
+                <tr>
+                    <td><a href="{{ path('trick', {'id' : trick.id}) }}">{{ trick.title }}</a></td>
+                    <td>{{ trick.createdAt | date("d/m/Y") }}</td>
+                    <td>{{ trick.comments | length }}</td>
+                    <td>
+                        <a class="controls" href="#">
+                            <button type="button" class="btn btnChap btn-warning">Modifier</button>
+                        </a>
+                    </td>
+                    <td>
+                        <a class="controls" href="#">
+                            <button type="button" class="btn btnChap btn-danger">Supprimer</button>
+                        </a>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
 
-    <table>
-        <thead>
-        <tr>
-            <th>Tricks en ligne</th>
-            <th>Publié le</th>
-            <th>commentaires</th>
-        </tr>
-        </thead>
-        <tbody>
-        {% for trick in tricks %}
-            <tr>
-                <td><a href="{{ path('trick', {'id' : trick.id}) }}">{{ trick.title }}</a></td>
-                <td>{{ trick.createdAt | date("d/m/Y") }}</td>
-                <td>{{ trick.comments | length }}</td>
-                <td>
-                    <a class="controls" href="#">
-                        <button type="button" class="btn btnChap btn-warning">Modifier</button>
-                    </a>
-                </td>
-                <td>
-                    <a class="controls" href="#">
-                        <button type="button" class="btn btnChap btn-danger">Supprimer</button>
-                    </a>
-                </td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+        <h2 class="text-center" id="users">Utilisateurs inscrits</h2>
 
-    <h2 class="text-center" id="users">Utilisateurs inscrits</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Utilisateurs</th>
+                    <th>Mail</th>
+                    <th>Depuis le :</th>
+                    <th>Commentaires</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for user in users %}
+                <tr>
+                    <td>
+                        <a href="{{ path('userAccount', {'id': user.id}) }}">{{ user.username }}</a>
+                    </td>
+                    <td><a href="mailto:{{ user.mail }}">{{ user.mail }}</a></td>
+                    <td>{{ user.createdAt | date("d/m/Y") }}</td>
+                    <td>{{ user.comments | length }}</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
 
-    <table>
-        <thead>
-        <tr>
-            <th>Utilisateurs</th>
-            <th>Mail</th>
-            <th>Depuis le :</th>
-            <th>Commentaires</th>
-        </tr>
-        </thead>
-        <tbody>
-        {% for user in users %}
-            <tr>
-                <td>
-                    <a href="{{ path('userAccount', {'id': user.id}) }}">{{ user.username }}</a>
-                </td>
-                <td><a href="mailto:{{ user.mail }}">{{ user.mail }}</a></td>
-                <td>{{ user.createdAt | date("d/m/Y") }}</td>
-                <td>{{ user.comments | length }}</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+        <h2 class="text-center" id="comments">Commentaires en attente de validations</h2>
 
-    <h2 class="text-center" id="comments">Commentaires en attente de validations</h2>
-
-    <table>
-        <thead>
-        <tr>
-            <th>Commentaires</th>
-            <th>Trick</th>
-            <th>Publié le</th>
-            <th>auteur</th>
-        </tr>
-        </thead>
-        <tbody>
-        {% if comments is empty %}
-            <td>Pas de commentaires signalés</td>
-        {% endif %}
-        {% for comment in comments %}
-            <tr>
-                <td>{{ comment.content }}</td>
-                <td>
-                    <a href="{{ path('trick', {id: comment.trickId.id}) }}">{{ comment.trickId.title }}</a>
-                </td>
-                <td>{{ comment.createdAt | date("d/m/Y") }}</td>
-                <td>
-                    <a href="{{ path('userAccount', {'id': comment.user.id}) }}">{{ comment.user.username }}</a>
-                </td>
-                <td>
-                    <a class="controls" href="{{ path('validateComment', { id: comment.id}) }}">
-                        <button type="button" class="btn btnChap btn-success">Valider</button>
-                    </a>
-                </td>
-                <td>
-                    <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteComment">
-                        Supprimer
-                    </button>
-                    <div class="modal fade" id="deleteComment" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                        <div class="modal-dialog" role="document">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title" id="exampleModalLabel">Attention !</h5>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>
-                                <div class="modal-body">
-                                    <p>Etes-vous sûr de vouloir supprimer ce commentaire ?</p>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Non</button>
-                                    <a href="{{ path('removeComment', { id: comment.id}) }}" class="btn btn-danger">Supprimer</a>
+        <table>
+            <thead>
+                <tr>
+                    <th>Commentaires</th>
+                    <th>Trick</th>
+                    <th>Publié le</th>
+                    <th>auteur</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% if comments is empty %}
+                <td>Pas de commentaires signalés</td>
+            {% endif %}
+            {% for comment in comments %}
+                <tr>
+                    <td>{{ comment.content }}</td>
+                    <td>
+                        <a href="{{ path('trick', {id: comment.trickId.id}) }}">{{ comment.trickId.title }}</a>
+                    </td>
+                    <td>{{ comment.createdAt | date("d/m/Y") }}</td>
+                    <td>
+                        <a href="{{ path('userAccount', {'id': comment.user.id}) }}">{{ comment.user.username }}</a>
+                    </td>
+                    <td>
+                        <a class="controls" href="{{ path('validateComment', { id: comment.id}) }}">
+                            <button type="button" class="btn btnChap btn-success">Valider</button>
+                        </a>
+                    </td>
+                    <td>
+                        <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteComment">
+                            Supprimer
+                        </button>
+                        <div class="modal fade" id="deleteComment" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">Attention !</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <p>Etes-vous sûr de vouloir supprimer ce commentaire ?</p>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Non</button>
+                                        <a href="{{ path('removeComment', { id: comment.id}) }}" class="btn btn-danger">Supprimer</a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </main>
 
 {% endblock %}

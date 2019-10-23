@@ -4,96 +4,97 @@
 
 {% block body %}
 
-    <div class="card account">
-        <div class="card-header">
-            {% if is_granted('ROLE_ADMIN') %}
-                <h1>Compte de {{ user.username }}</h1>
-            {% else %}
-                <h1>Mon compte SnowTricks</h1>
-            {% endif %}
-        </div>
-        <ul class="list-group list-group-flush">
-            <li class="list-group-item">Nom d'utilisateur : {{ user.username }}</li>
-            <li class="list-group-item">E-mail : {{ user.mail }}</li>
-            <li class="list-group-item">Date d'inscription : {{ user.createdAt | date("d/m/Y") }}</li>
-            <li class="list-group-item d-flex justify-content-around">
-                {% if not is_granted('ROLE_ADMIN') %}
-                    <a href="#" class="btn btn-primary">Modifier le mot de passe</a>
+    <main>
+        <section class="card account">
+            <div class="card-header">
+                {% if is_granted('ROLE_ADMIN') %}
+                    <h1>Compte de {{ user.username }}</h1>
+                {% else %}
+                    <h1>Mon compte SnowTricks</h1>
                 {% endif %}
-                <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteModal">
-                    {% if is_granted('ROLE_ADMIN') %}
-                    Supprimer le compte
-                    {% else %}
-                    Supprimer mon compte
-                    {% endif %}
-                </button>
-                <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel">Attention !</h5>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-                            <div class="modal-body">
-                                {% if is_granted('ROLE_ADMIN') %}
-                                    <p>Etes-vous sûr de vouloir supprimer ce compte ?</p>
-                                {% else %}
-                                    <p>Etes-vous sûr de vouloir supprimer votre compte ?</p>
-                                {% endif %}
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Non</button>
-                                <a href="{{ path('deleteAccount') }}" class="btn btn-danger">Supprimer</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </li>
-        </ul>
-    </div>
-
-    <div class="card account">
-        <div class="card-header">
-            <h2 class="text-center">Mes commentaires</h2>
-        </div>
-        <ul class="list-group list-group-flush">
-            {% for comment in user.comments | sort((a, b) => b.createdAt <=> a.createdAt) %}
-
-                <li class="list-group-item"><em>le : {{ comment.createdAt | date("d/m/Y à g:i") }} sur
-                <a href="{{ path('trick', {id: comment.trickId.id}) }}">{{ comment.trickId.title }}</a></em>
-            <div class="d-flex justify-content-between">
-                <p>-> {{ comment.content }}</p>
-                {% if comment.status == 'validation' %}
-                    <p class="text-danger">commentaire en modération !</p>
-                {% endif %}
-                <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteComment">
-                    Supprimer commentaire
-                </button>
-                <div class="modal fade" id="deleteComment" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel">Attention !</h5>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-                            <div class="modal-body">
-                                <p>Etes-vous sûr de vouloir supprimer ce commentaire ?</p>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Non</button>
-                                <a href="{{ path('removeComment', { id: comment.id}) }}" class="btn btn-danger">Supprimer</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
             </div>
-            </li>
-            {% endfor %}
-        </ul>
-    </div>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item">Nom d'utilisateur : {{ user.username }}</li>
+                <li class="list-group-item">E-mail : {{ user.mail }}</li>
+                <li class="list-group-item">Date d'inscription : {{ user.createdAt | date("d/m/Y") }}</li>
+                <li class="list-group-item d-flex justify-content-around">
+                    {% if not is_granted('ROLE_ADMIN') %}
+                        <a href="#" class="btn btn-primary">Modifier le mot de passe</a>
+                    {% endif %}
+                    <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteModal">
+                        {% if is_granted('ROLE_ADMIN') %}
+                        Supprimer le compte
+                        {% else %}
+                        Supprimer mon compte
+                        {% endif %}
+                    </button>
+                    <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">Attention !</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    {% if is_granted('ROLE_ADMIN') %}
+                                        <p>Etes-vous sûr de vouloir supprimer ce compte ?</p>
+                                    {% else %}
+                                        <p>Etes-vous sûr de vouloir supprimer votre compte ?</p>
+                                    {% endif %}
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Non</button>
+                                    <a href="{{ path('deleteAccount') }}" class="btn btn-danger">Supprimer</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </section>
+
+        <section class="card account">
+            <div class="card-header">
+                <h2 class="text-center">Mes commentaires</h2>
+            </div>
+            <ul class="list-group list-group-flush">
+                {% for comment in user.comments | sort((a, b) => b.createdAt <=> a.createdAt) %}
+                    <li class="list-group-item"><em>le : {{ comment.createdAt | date("d/m/Y à g:i") }} sur
+                        <a href="{{ path('trick', {id: comment.trickId.id}) }}">{{ comment.trickId.title }}</a></em>
+                        <div class="d-flex justify-content-between">
+                            <p>-> {{ comment.content }}</p>
+                            {% if comment.status == 'validation' %}
+                                <p class="text-danger">commentaire en modération !</p>
+                            {% endif %}
+                            <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteComment">
+                                Supprimer commentaire
+                            </button>
+                            <div class="modal fade" id="deleteComment" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel">Attention !</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <p>Etes-vous sûr de vouloir supprimer ce commentaire ?</p>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Non</button>
+                                            <a href="{{ path('removeComment', { id: comment.id}) }}" class="btn btn-danger">Supprimer</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                {% endfor %}
+            </ul>
+        </section>
+    </main>
 
 {% endblock %}
