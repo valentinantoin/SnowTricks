@@ -3,16 +3,16 @@
 namespace App\Controller;
 
 use App\Entity\User;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use App\Form\RegistrationType;
 use Doctrine\Common\Persistence\ObjectManager;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
-use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
-use Symfony\Component\HttpFoundation\Session\Session;
+use Symfony\Component\Routing\Annotation\Route;
 
 /**
  * Class UserController
@@ -25,7 +25,7 @@ class UserController extends AbstractController
      * @param Request $request
      * @param ObjectManager $objectManager
      * @param UserPasswordEncoderInterface $userPasswordEncoder
-     * @return Response
+     * @return RedirectResponse | Response
      * @throws \Exception
      */
     public function registration( Request $request, ObjectManager $objectManager, UserPasswordEncoderInterface $userPasswordEncoder)
@@ -42,11 +42,12 @@ class UserController extends AbstractController
             $objectManager->persist($user);
             $objectManager->flush();
             $this->addFlash('register', 'Votre compte est bien créé !');
-            $this->redirectToRoute('connection');
+
+            return $this->redirectToRoute('connection');
         }
 
         return $this->render('user/registration.html.twig', [
-            'form' => $form->createView()
+        'form' => $form->createView()
         ]);
     }
 
@@ -99,7 +100,6 @@ class UserController extends AbstractController
     public function userAccount($id)
     {
         if($this->isGranted('ROLE_ADMIN')) {
-
             $repoUser = $this->getDoctrine()->getRepository(User::class);
             $user = $repoUser->find($id);
 
@@ -107,6 +107,7 @@ class UserController extends AbstractController
                 'user' => $user
             ]);
         }
+
         $this->addFlash('admin', 'vous n\'avez pas dit le mot magique');
 
         return $this->redirectToRoute('home');
@@ -114,10 +115,9 @@ class UserController extends AbstractController
 
     /**
      * @Route("/deinscription", name="deleteAccount")
-     * @param Session $session
      * @return Response
      */
-    public function deleteAccount( Session $session)
+    public function deleteAccount()
     {
         $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
 
