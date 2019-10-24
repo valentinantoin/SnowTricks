@@ -134,4 +134,13 @@ class UserController extends AbstractController
 
         return $this->redirectToRoute('home');
     }
+
+    /**
+     * @Route("/PasswordChange", name="passwordChange")
+     * @return Response
+     */
+    public function passwordChange()
+    {
+        return $this->render('user/password.html.twig');
+    }
 }
