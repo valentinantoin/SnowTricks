@@ -60,6 +60,11 @@ class User implements UserInterface
      */
     private $comments;
 
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    protected $resetToken;
+
     public function __construct()
     {
         $this->comments = new ArrayCollection();
@@ -184,5 +189,21 @@ class User implements UserInterface
         }
 
         return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getResetToken()
+    {
+        return $this->resetToken;
+    }
+
+    /**
+     * @param string $resetToken
+     */
+    public function setResetToken(?string $resetToken)
+    {
+        $this->resetToken = $resetToken;
     }
 }
