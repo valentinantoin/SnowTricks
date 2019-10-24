@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Tricks;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -72,5 +73,19 @@ class TricksController extends AbstractController
             'typeTricks' => $typeTricks,
             'type' => $type
         ]);
+    }
+
+    /**
+     * @route("/removeTrick/{id}", name="removeTrick")
+     * @param tricks $trick
+     * @return RedirectResponse
+     */
+    public function removeTrick( tricks $trick)
+    {
+        $manager = $this->getDoctrine()->getManager();
+        $manager->remove($trick);
+        $manager->flush();
+
+        return $this->redirectToRoute('admin', ['_fragment' => 'tricks']);
     }
 }
