@@ -6,7 +6,7 @@
 
     <h1>Toutes les figures disponibles :</h1>
 
-    {% for message in app.flashes('add')  %}
+    {% for message in app.flashes('add', 'update')  %}
         <div class="alert alert-success">
             {{ message }}
         </div>
