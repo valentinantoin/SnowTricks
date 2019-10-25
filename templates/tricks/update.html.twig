@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+{% form_theme form 'bootstrap_4_layout.html.twig' %}
+{% block title 'Modifier Trick' %}
+
+{% block body %}
+
+    <h1>Modifier le trick : {{ trick.title }} !!</h1>
+
+    <main>
+        <section class="form">
+            {{ form(form) }}
+        </section>
+    </main>
+
+{% endblock %}
