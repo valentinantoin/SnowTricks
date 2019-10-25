@@ -37,7 +37,7 @@
                     <td>{{ trick.createdAt | date("d/m/Y") }}</td>
                     <td>{{ trick.comments | length }}</td>
                     <td>
-                        <a class="controls" href="#">
+                        <a class="controls" href="{{ path('update', {'id': trick.id}) }}">
                             <button type="button" class="btn btnChap btn-warning">Modifier</button>
                         </a>
                     </td>
