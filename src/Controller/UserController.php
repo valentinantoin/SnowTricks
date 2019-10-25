@@ -116,11 +116,24 @@ class UserController extends AbstractController
     }
 
     /**
-     * @Route("/deinscription", name="deleteAccount")
+     * @Route("/deinscription/{id}", name="deleteAccount")
+     * @param ObjectManager $manager
+     * @param $id
      * @return Response
      */
-    public function deleteAccount()
+    public function deleteAccount(ObjectManager $manager,$id)
     {
+        if($this->isGranted('ROLE_ADMIN')){
+
+            $repoUser = $this->getDoctrine()->getRepository(User::class);
+            $user = $repoUser->find($id);
+
+            $manager->remove($user);
+            $manager->flush();
+
+            return $this->redirectToRoute('admin', ['_fragment' => 'users']);
+        }
+
         $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
 
         $session = new Session();
