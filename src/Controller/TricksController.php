@@ -9,6 +9,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\Routing\Annotation\Route;
@@ -139,6 +140,36 @@ class TricksController extends AbstractController
 
         return $this->render('tricks/createTrick.html.twig',[
             'form' => $form->createView()
+        ]);
+    }
+
+    /**
+     * @Route("/modification/{id}", name="update")
+     * @param Request $request
+     * @param ObjectManager $manager
+     * @param Tricks $trick
+     * @return RedirectResponse | Response
+     */
+    public function updateTrick(Request $request,ObjectManager $manager,Tricks $trick)
+    {
+        $trick->setImg(
+            new File($this->getParameter('trick_directory').'/'.$trick->getImg()));
+
+        $form = $this->createForm(TrickType::class, $trick);
+        $form->handleRequest($request);
+
+        if($form->isSubmitted() && $form->isValid()) {
+
+            $manager->flush();
+
+            $this->addFlash('update', 'Le trick est bien modifié !');
+
+            return $this->redirectToRoute('tricks');
+        }
+
+        return $this->render('tricks/update.html.twig', [
+            'form' => $form->createView(),
+            'trick' => $trick
         ]);
     }
 }
