@@ -6,6 +6,12 @@
 
     <h1>Toutes les figures disponibles :</h1>
 
+    {% for message in app.flashes('add')  %}
+        <div class="alert alert-success">
+            {{ message }}
+        </div>
+    {% endfor %}
+
     <main class="d-flex">
 
         {% include 'tricksSelector.html.twig' %}

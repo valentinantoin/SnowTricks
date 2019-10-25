@@ -132,6 +132,8 @@ class TricksController extends AbstractController
             $manager->persist($trick);
             $manager->flush();
 
+            $this->addFlash('add', 'Trick bien ajouté !');
+
             return $this->redirectToRoute('tricks');
         }
 
