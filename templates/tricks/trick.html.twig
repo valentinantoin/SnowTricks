@@ -25,6 +25,14 @@
                     </div>
                 <h2>Description :</h2>
                 <p class="card-text text-justify">{{ trick.content }}</p>
+                {% if app.user %}
+                    <a href="{{ path('update', {id: trick.id}) }}" title="Modifier">
+                        <i class="fas fa-pen fa-2x"></i>
+                    </a>
+                    <a href="{{ path('removeTrick', {id: trick.id}) }}" title="Supprimer">
+                         <i class="fas fa-trash-alt fa-2x"></i>
+                    </a>
+                {% endif %}
             </div>
         </div>
     </main>

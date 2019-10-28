@@ -22,7 +22,15 @@
                     <img src="img/{{ trick.img }}" class="card-img-top" alt="Snowboard trick">
                     <div class="card-body d-flex justify-content-between flex-column">
                         <h5 class="card-title text-center">
-                            <a href="{{ path('trick', {id: trick.id }) }}">{{ trick.title }}</a>
+                            <a href="{{ path('trick', {id: trick.id }) }}" title="{{ trick.title }}">{{ trick.title }}</a>
+                            {% if app.user %}
+                                <a href="{{ path('update', {id: trick.id}) }}" title="Modifier">
+                                    <i class="fas fa-pen"></i>
+                                </a>
+                                <a href="{{ path('removeTrick', {id: trick.id}) }}" title="Supprimer">
+                                    <i class="fas fa-trash-alt"></i>
+                                </a>
+                            {% endif %}
                         </h5>
                         <h6>{{ trick.type }}</h6>
                         <p class="card-text">
