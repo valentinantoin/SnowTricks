@@ -95,7 +95,12 @@ class TricksController extends AbstractController
         $manager->remove($trick);
         $manager->flush();
 
-        return $this->redirectToRoute('admin', ['_fragment' => 'tricks']);
+        if($this->isGranted('ROLE_ADMIN')) {
+
+            return $this->redirectToRoute('admin', ['_fragment' => 'tricks']);
+        }
+
+        return $this->redirectToRoute('tricks');
     }
 
     /**
