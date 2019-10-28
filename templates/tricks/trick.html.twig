@@ -64,7 +64,7 @@
 
         {% for comment in trick.comments | sort((a, b) => b.createdAt <=> a.createdAt) %}
             {% if comment.status == 'published' %}
-                <div class="card comment">
+                <div class="card comment comment-show">
                     <div class="flex-sb">
                         <h4 class="card-header">Posté par : <strong>{{ comment.user.username }}</strong>,
                             le {{ comment.createdAt | date("d/m/Y à g:i") }}
@@ -81,6 +81,11 @@
                 </div>
             {% endif %}
         {% endfor %}
+        {% if trick.comments is empty %}
+            <h5 class="text-center mt-5">Pas de commentaires pour le moment...</h5>
+        {% else %}
+            <button class="btn btn-primary" id="loadMoreComment">afficher plus</button>
+        {% endif %}
 
     </section>
 

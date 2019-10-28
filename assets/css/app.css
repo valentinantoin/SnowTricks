@@ -107,10 +107,15 @@ h4 {
     font-size: 1rem;
 }
 
-form .btn {
+form .btn,
+#loadMoreComment {
     width: 20%;
     margin-left: 40%;
     margin-top: 1rem;
+}
+
+.comment-show {
+    display: none;
 }
 
 /*===   ACCOUNT   ===*/

@@ -14,7 +14,20 @@ require("@fortawesome/fontawesome-free/js/all.js");
 const $ = require('jquery');
 require('bootstrap');
 
+// autofill img input when uploading file
 $(document).on('change', '.custom-file-input', function () {
     let fileName = $(this).val().replace(/\\/g, '/').replace(/.*\//, '');
     $(this).parent('.custom-file').find('.custom-file-label').text(fileName);
+});
+
+// load more comment function
+$(function(){
+    $(".comment-show").slice(0, 5).css("display", "flex");
+    $(document).on("click", "#loadMoreComment", function(event){
+        event.preventDefault();
+        $(".comment-show:hidden").slice(0, 5).css("display", "flex");
+        if($(".comment-show:hidden").length === 0){
+            $("#loadMoreComment").attr("disabled", "disabled");
+        }
+    });
 });
