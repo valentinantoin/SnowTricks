@@ -40,7 +40,7 @@ class CommentController extends AbstractController
             $manager->persist($comment);
             $manager->flush();
 
-            return $this->redirectToRoute('trick',['id' => $id]);
+            return $this->redirectToRoute('trick',['id' => $id, '_fragment' => 'comments']);
         }
 
         return $this->render('home/home.html.twig');
@@ -77,7 +77,7 @@ class CommentController extends AbstractController
         $comment->setStatus('validation');
         $manager->flush();
 
-        return $this->redirectToRoute('trick',['id' => $trickId]);
+        return $this->redirectToRoute('trick',['id' => $trickId, '_fragment' => 'comments']);
     }
 
     /**
