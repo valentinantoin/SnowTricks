@@ -28,7 +28,9 @@ class TrickType extends AbstractType
                 'class' => Type::class,
                 'choice_label' => 'name'
             ])
-            ->add('send', SubmitType::class)
+            ->add('send', SubmitType::class, [
+                'label' => 'Ajouter'
+            ])
         ;
     }
 
