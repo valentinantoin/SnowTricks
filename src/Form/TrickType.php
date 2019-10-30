@@ -3,6 +3,8 @@
 namespace App\Form;
 
 use App\Entity\Tricks;
+use App\Entity\Type;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
@@ -28,7 +30,9 @@ class TrickType extends AbstractType
             ->add('video', TextType::class, [
                 'label' => 'Lien youtube'
             ])
-            ->add('type', TextType::class, [
+            ->add('typeId', EntityType::class, [
+                'class' => Type::class,
+                'choice_label' => 'name',
                 'label' => 'Type'
             ])
             ->add('send', SubmitType::class, [
