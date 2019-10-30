@@ -167,8 +167,9 @@ class TricksController extends AbstractController
      */
     public function updateTrick(Request $request,ObjectManager $manager,Tricks $trick)
     {
-        $trick->setImg(
-            new File($this->getParameter('trick_directory').'/'.$trick->getImg()));
+
+        $img = new File($this->getParameter('trick_directory').'/'.$trick->getImg());
+        $trick->setImg($img->getFilename());
 
         $form = $this->createForm(TrickType::class, $trick);
         $form->handleRequest($request);
