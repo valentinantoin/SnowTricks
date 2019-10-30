@@ -12,6 +12,9 @@
                 <a class="nav-link active" href="#tricks">Tricks</a>
             </li>
             <li class="nav-item">
+                <a class="nav-link" href="#types">Types</a>
+            </li>
+            <li class="nav-item">
                 <a class="nav-link" href="#users">Utilisateurs</a>
             </li>
             <li class="nav-item">
@@ -50,6 +53,32 @@
             {% endfor %}
             </tbody>
         </table>
+
+        <h2 class="text-center" id="types">Types</h2>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Type</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for type in types %}
+                    <tr>
+                        <td>
+                            <a href="{{ path('typeTricks', {typeId: type.id}) }}">{{ type.name }}</a>
+                        </td>
+                        <td>
+                            <a class="controls" href="#">
+                                <button type="button" class="btn btnChap btn-danger">Supprimer</button>
+                            </a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
 
         <h2 class="text-center" id="users">Utilisateurs inscrits</h2>
 
