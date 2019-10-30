@@ -42,4 +42,19 @@ class TypeController extends AbstractController
             'form' => $typeForm->createView()
         ]);
     }
+
+    /**
+     * @route("/supType/{id}", name="deleteType")
+     * @param Type $type
+     * @return RedirectResponse
+     */
+    public function deleteType( Type $type)
+    {
+        $manager = $this->getDoctrine()->getManager();
+        $manager->remove($type);
+        $manager->flush();
+
+        return $this->redirectToRoute('admin', ['_fragment' => 'types']);
+
+    }
 }

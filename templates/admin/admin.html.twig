@@ -70,7 +70,7 @@
                             <a href="{{ path('typeTricks', {typeId: type.id}) }}">{{ type.name }}</a>
                         </td>
                         <td>
-                            <a class="controls" href="#">
+                            <a class="controls" href="{{ path('deleteType', {id: type.id}) }}">
                                 <button type="button" class="btn btnChap btn-danger">Supprimer</button>
                             </a>
                         </td>
