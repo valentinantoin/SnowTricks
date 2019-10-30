@@ -6,6 +6,11 @@
 
     <h1>Ajoutez un trick !!</h1>
 
+    {% for message in app.flashes('success') %}
+        <div class="alert alert-success">
+            {{ message }}
+        </div>
+    {% endfor %}
 
     <main>
         <section class="form">
