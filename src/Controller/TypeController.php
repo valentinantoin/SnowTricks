@@ -44,7 +44,7 @@ class TypeController extends AbstractController
     }
 
     /**
-     * @route("/supType/{id}", name="deleteType")
+     * @route("/admin/supType/{id}", name="deleteType")
      * @param Type $type
      * @return RedirectResponse
      */
@@ -55,6 +55,5 @@ class TypeController extends AbstractController
         $manager->flush();
 
         return $this->redirectToRoute('admin', ['_fragment' => 'types']);
-
     }
 }
