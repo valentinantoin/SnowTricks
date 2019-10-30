@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Tricks;
+use App\Entity\Type;
 use App\Form\TrickType;
 use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -42,8 +43,12 @@ class TricksController extends AbstractController
         $repoTricks = $this->getDoctrine()->getRepository(Tricks::class);
         $tricks = $repoTricks->findAll();
 
+        $repoType = $this->getDoctrine()->getRepository(Type::class);
+        $types = $repoType->findAll();
+
         return $this->render('tricks/tricks.html.twig', [
-            'tricks' => $tricks
+            'tricks' => $tricks,
+            'types' => $types
         ]);
     }
 
@@ -63,21 +68,26 @@ class TricksController extends AbstractController
     }
 
     /**
-     * @Route("/tricks/{type}", name="typeTricks")
-     * @param $type
+     * @Route("/tricks/{typeId}", name="typeTricks")
+     * @param $typeId
      * @return Response
      */
-    public function typeTricks($type)
+    public function typeTricks($typeId)
     {
         $repoTricks = $this->getDoctrine()->getRepository(Tricks::class);
         $tricks = $repoTricks->findAll();
 
-        $typeTricks = $repoTricks->findBy(['type'=> $type]);
+        $typeTricks = $repoTricks->findBy(['typeId'=> $typeId]);
+
+        $repoType = $this->getDoctrine()->getRepository(Type::class);
+        $type = $repoType->find($typeId);
+        $types = $repoType->findAll();
 
         return $this->render('tricks/typeTricks.html.twig', [
             'tricks' => $tricks,
             'typeTricks' => $typeTricks,
-            'type' => $type
+            'type' => $type,
+            'types' => $types
         ]);
     }
 

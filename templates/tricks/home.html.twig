@@ -54,7 +54,7 @@
                             </a>
                         {% endif %}
                     </h5>
-                    <h6>{{ trick.type }}</h6>
+                    <h6>{{ trick.typeId.name }}</h6>
                     <p class="card-text"><i class="far fa-clock"></i> Publié le: {{ trick.createdAt | date("d/m/Y") }}</p>
                     <a href="{{ path('trick', {id: trick.id }) }}" class="btn btn-primary">Voir plus...</a>
                 </div>

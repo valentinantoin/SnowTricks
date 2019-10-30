@@ -31,9 +31,9 @@
         <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
             <div class="card-body">
                 <ul>
-                    <li><a href="{{ path('typeTricks', {type: 'Grabs'}) }}">Grabs</a></li>
-                    <li><a href="{{ path('typeTricks', {type: 'Stalls'}) }}">Stalls</a></li>
-                    <li><a href="{{ path('typeTricks', {type: 'Straight airs'}) }}">Straight airs</a></li>
+                    {% for type in types %}
+                        <li><a href="{{ path('typeTricks', {typeId: type.id}) }}">{{ type.name }}</a></li>
+                    {% endfor %}
                 </ul>
             </div>
         </div>
