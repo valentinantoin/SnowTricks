@@ -1,0 +1,11 @@
+{# templates/bundles/TwigBundle/Exception/error.html.twig #}
+{% extends 'base.html.twig' %}
+
+{% block title %}Error {{ status_code }} {% endblock %}
+
+{% block body %}
+    <main class="w-100 text-center">
+        <img class="mt-5" src="https://media.giphy.com/media/VwoJkTfZAUBSU/source.gif" alt="404"/>
+        <h1>Erreur {{ status_code }}</h1>
+    </main>
+{% endblock %}
