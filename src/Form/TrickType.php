@@ -26,6 +26,7 @@ class TrickType extends AbstractType
             ->add('img', FileType::class, [
                 'label' => 'Image',
                 'mapped' => false,
+                'required' => false
             ])
             ->add('video', TextType::class, [
                 'label' => 'Lien youtube'

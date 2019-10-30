@@ -133,7 +133,7 @@ class TricksController extends AbstractController
             $originalImg = pathinfo($img->getClientOriginalName(), PATHINFO_FILENAME);
             // this is needed to safely include the file name as part of the URL
             $safeImg = transliterator_transliterate('Any-Latin; Latin-ASCII; [^A-Za-z0-9_] remove; Lower()', $originalImg);
-            $newImg = $safeImg.'-'.uniqid().'.'.$img->guessExtension();
+            $newImg = $safeImg.'.'.$img->guessExtension();
 
             try {
                 $img->move(
