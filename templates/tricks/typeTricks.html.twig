@@ -10,7 +10,12 @@
 
         {% include 'tricksSelector.html.twig' %}
 
-        <div class="d-flex flex-wrap justify-content-around">
+        <div class="d-flex flex-wrap justify-content-around w-100">
+            {% if typeTricks is empty %}
+                <div>
+                    <h2 class="text-center mt-5">Pas encore de tricks de ce type...</h2>
+                </div>
+            {% else %}
             {% for trick in typeTricks %}
                 <div class="card">
                     <img src="../img/{{ trick.img }}" class="card-img-top" alt="Snowboard trick">
@@ -26,6 +31,7 @@
                     </div>
                 </div>
             {% endfor %}
+            {% endif %}
         </div>
     </main>
 
