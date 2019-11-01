@@ -29,7 +29,6 @@
             <thead>
                 <tr>
                     <th>Tricks en ligne</th>
-                    <th>Publié le</th>
                     <th>commentaires</th>
                 </tr>
             </thead>
@@ -37,7 +36,6 @@
             {% for trick in tricks %}
                 <tr>
                     <td><a href="{{ path('trick', {'id' : trick.id}) }}">{{ trick.title }}</a></td>
-                    <td>{{ trick.createdAt | date("d/m/Y") }}</td>
                     <td>{{ trick.comments | length }}</td>
                     <td>
                         <a class="controls" href="{{ path('update', {'id': trick.id}) }}">
@@ -112,7 +110,6 @@
                 <tr>
                     <th>Commentaires</th>
                     <th>Trick</th>
-                    <th>Publié le</th>
                     <th>auteur</th>
                 </tr>
             </thead>
@@ -126,7 +123,6 @@
                     <td>
                         <a href="{{ path('trick', {id: comment.trickId.id}) }}">{{ comment.trickId.title }}</a>
                     </td>
-                    <td>{{ comment.createdAt | date("d/m/Y") }}</td>
                     <td>
                         <a href="{{ path('userAccount', {'id': comment.user.id}) }}">{{ comment.user.username }}</a>
                     </td>

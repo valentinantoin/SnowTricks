@@ -25,7 +25,7 @@
         </div>
     {% endfor %}
 
-    <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
+    <div class="carousel slide" data-ride="carousel">
         <div class="carousel-inner">
             <div class="carousel-item active">
                 <img src="img/slide1.jpg" class="d-block w-100" alt="...">
@@ -38,7 +38,7 @@
 
     <h1>Dernières figures ajoutées :</h1>
 
-    <main class="d-flex justify-content-around">
+    <main class="d-flex justify-content-around" id="home">
         {% for trick in tricks %}
             <div class="card">
                 <img src="img/{{ trick.img }}" class="card-img-top" alt="Snowboard trick">

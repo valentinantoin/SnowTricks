@@ -13,7 +13,7 @@
             <div class="card-body">
                 <p class="text-right"><i class="far fa-clock"></i> Publié le: {{ trick.createdAt | date("d/m/Y") }}</p>
                 <p class="text-left">Type de figure : <a href="{{ path('typeTricks', {typeId: trick.typeId.id}) }}">{{ trick.typeId.name }}</a></p>
-                    <button class="btn btn-primary m-2" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                    <button class="btn btn-primary m-2 btnw" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
                         Voir les vidéos
                     </button>
                     <div class="collapse" id="collapseExample">
@@ -44,13 +44,12 @@
     <section>
         {% if not app.user %}
             <h4 class="text-center">Pour laisser un commentaire,
-                <a href="{{ path('registration') }}" class="ml btn btn-dark">Inscrivez-vous</a>
-                ou
-                <a href="{{ path('connection') }}" class="ml btn btn-dark">Connectez-vous</a>
+                <a href="{{ path('registration') }}" class="ml btn btnw btn-dark">Inscrivez-vous</a>
+                <a href="{{ path('connection') }}" class="ml btn btnw btn-dark">Connectez-vous</a>
             </h4>
         {% else %}
             <form class="form" method="post" action="{{ path('createComment',{'id' : trick.id}) }}">
-                <div class="input-group flex-nowrap">
+                <div class="input-group flex-nowrap" id="commentTextArea">
                     <div class="input-group-prepend">
                         <label for="comment" class="input-group-text" id="addon-wrapping">Ecrire un commentaire</label>
                     </div>
