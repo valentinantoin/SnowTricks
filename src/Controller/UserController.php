@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\User;
+use App\Form\MailType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use App\Form\RegistrationType;
 use Doctrine\Common\Persistence\ObjectManager;
@@ -241,5 +242,28 @@ class UserController extends AbstractController
         }
 
             return $this->render('user/newPassword.html.twig', ['token' => $token]);
+    }
+
+    /**
+     * @Route("/nouveauMail", name="updateMail")
+     * @param Request $request
+     * @param ObjectManager $manager
+     * @return RedirectResponse | Response
+     */
+    public function updateMail(Request $request, ObjectManager $manager)
+    {
+        $user = $this->getUser();
+        $form = $this->createForm(MailType::class, $user);
+        $form->handleRequest($request);
+
+        if($form->isSubmitted() && $form->isValid()) {
+
+            $manager->flush();
+
+            return $this->redirectToRoute('account');
+        }
+            return $this->render('user/newMail.html.twig', [
+                'form' => $form->createView()
+            ]);
     }
 }

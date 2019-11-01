@@ -18,7 +18,7 @@
                 <li class="list-group-item">E-mail : {{ user.mail }}</li>
                 <li class="list-group-item">Date d'inscription : {{ user.createdAt | date("d/m/Y") }}</li>
                 <li class="list-group-item d-flex justify-content-around">
-                    <a href="#" class="btn btn-primary">Modifier le mail</a>
+                    <a href="{{ path('updateMail') }}" class="btn btn-primary">Modifier le mail</a>
                     <a href="{{ path('passwordChange') }}" class="btn btn-primary">Modifier le mot de passe</a>
                     <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteModal">
                         {% if is_granted('ROLE_ADMIN') %}
