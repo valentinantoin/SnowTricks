@@ -31,9 +31,18 @@
                             {% for img in imgs %}
                                 <div class="card card-body flex-grow-0">
                                     <img src="{{ img.url }}" alt="#">
+                                    {% if app.user %}
+                                        <p>
+                                            <a href="{{ path('deleteImg', {id: img.id}) }}" title="Supprimer">
+                                                <i class="fas fa-trash-alt fa-2x"></i>
+                                            </a>
+                                        </p>
+                                    {% endif %}
                                 </div>
                             {% else %}
-                                <p>Pas d'images pour le moment</p>
+                                <div class="card card-body">
+                                    <p>Pas d'images pour le moment</p>
+                                </div>
                             {% endfor %}
                             </div>
                         </div>
