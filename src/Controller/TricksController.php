@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Image;
 use App\Entity\Tricks;
 use App\Entity\Type;
 use App\Form\TrickType;
@@ -61,9 +62,13 @@ class TricksController extends AbstractController
     {
         $repoTricks = $this->getDoctrine()->getRepository(Tricks::class);
         $trick = $repoTricks->find($id);
+        
+        $repoImage = $this->getDoctrine()->getRepository(Image::class);
+        $imgs = $repoImage->findBy(['trickId' => $id]);
 
         return $this->render('tricks/trick.html.twig', [
-            'trick' => $trick
+            'trick' => $trick,
+            'imgs' => $imgs
         ]);
     }
 
