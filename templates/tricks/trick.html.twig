@@ -40,10 +40,22 @@
                                     {% endif %}
                                 </div>
                             {% else %}
-                                <div class="card card-body">
+                                <div class="card card-body flex-grow-0">
                                     <p>Pas d'images pour le moment</p>
                                 </div>
                             {% endfor %}
+                                <button class="btn btn-primary align-self-center" data-toggle="collapse" data-target="#collapseAdd" aria-expanded="false" aria-controls="collapseAdd">
+                                    Ajouter image
+                                </button>
+                                <div class="collapse" id="collapseAdd">
+                                    <form method="post" action="{{ path('addImg', {id: trick.id}) }}" class="ml-5">
+                                        <div class="form-group">
+                                            <label for="url">Saisir l'url de l'image</label>
+                                            <input type="url" class="form-control" id="url" name="url" aria-label="url">
+                                            <button type="submit" class="btn btn-primary w-100 ml-0">Ajouter</button>
+                                        </div>
+                                    </form>
+                                </div>
                             </div>
                         </div>
 
