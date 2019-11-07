@@ -27,12 +27,14 @@
                             Voir les images
                         </button>
                         <div class="collapse" id="collapseImage">
-                            <div class="card card-body">
-                                {% for trick in trick %}
-                                    <img src="" alt="#">
-                                {% else %}
-                                    <p>Pas d'images pour le moment</p>
-                                {% endfor %}
+                            <div class="d-flex">
+                            {% for img in imgs %}
+                                <div class="card card-body flex-grow-0">
+                                    <img src="{{ img.url }}" alt="#">
+                                </div>
+                            {% else %}
+                                <p>Pas d'images pour le moment</p>
+                            {% endfor %}
                             </div>
                         </div>
 
