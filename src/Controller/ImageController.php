@@ -23,6 +23,6 @@ class ImageController extends AbstractController
         $manager->remove($img);
         $manager->flush();
 
-        return $this->redirectToRoute('trick', ['id' => $trickId]);
+        return $this->redirectToRoute('trick', ['id' => $trickId, '_fragment' => 'media']);
     }
 }

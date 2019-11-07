@@ -13,7 +13,7 @@
             <div class="card-body">
                 <p class="text-right"><i class="far fa-clock"></i> Publié le: {{ trick.createdAt | date("d/m/Y") }}</p>
                 <p class="text-left">Type de figure : <a href="{{ path('typeTricks', {typeId: trick.typeId.id}) }}">{{ trick.typeId.name }}</a></p>
-                    <button class="btn btn-primary m-2 btnw" type="button" data-toggle="collapse" data-target="#collapseVideo" aria-expanded="false" aria-controls="collapseVideo">
+                    <button class="btn btn-primary m-2 btnw" id="media" type="button" data-toggle="collapse" data-target="#collapseVideo" aria-expanded="false" aria-controls="collapseVideo">
                         Voir les vidéos
                     </button>
                     <div class="collapse" id="collapseVideo">
